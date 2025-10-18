@@ -16,7 +16,7 @@ import functools
 
 import torch
 from time import time
-from transformers import AutoProcessor, LlavaForConditionalGeneration
+from transformers import AutoConfig, AutoProcessor, LlavaForConditionalGeneration
 from torch.utils import _pytree as pytree
 from PIL import Image
 import requests
@@ -87,8 +87,10 @@ def compile_model(model):
 
 def main():
   model_id = "GSAI-ML/LLaDA-V"
+  config = AutoConfig.from_pretrained(model_id, trust_remote_code=True)
   model = LlavaForConditionalGeneration.from_pretrained(
       model_id,
+      config=config,
       dtype=torch.float16,
       trust_remote_code=True,
   )
