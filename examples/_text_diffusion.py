@@ -89,7 +89,7 @@ def main():
   model_id = "GSAI-ML/LLaDA-V"
   model = LlavaForConditionalGeneration.from_pretrained(
       model_id,
-      torch_dtype=torch.float16,
+      dtype=torch.float16,
       trust_remote_code=True,
   )
   processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
